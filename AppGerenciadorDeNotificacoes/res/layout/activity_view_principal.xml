@@ -14,12 +14,14 @@
         android:id="@+id/btnNovo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/novo_cadastro" />
+        android:text="@string/novo_cadastro"
+        style="?android:attr/buttonBarButtonStyle" />
 
     <Button
         android:id="@+id/btnHistorico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/historico" />
+        android:text="@string/historico"
+        style="?android:attr/buttonBarButtonStyle" />
 
 </LinearLayout>
