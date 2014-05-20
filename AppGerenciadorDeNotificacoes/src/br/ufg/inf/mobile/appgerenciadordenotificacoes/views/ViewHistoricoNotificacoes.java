@@ -37,7 +37,6 @@ public class ViewHistoricoNotificacoes extends ListActivity {
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-    	// TODO Auto-generated method stub
     	super.onListItemClick(l, v, position, id);
     	CharSequence texto = ((TextView) v).getText();
     	Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
