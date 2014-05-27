@@ -2,11 +2,9 @@ package br.ufg.inf.mobile.appgerenciadordenotificacoes.views;
 
 
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 import br.ufg.inf.mobile.appgerenciadordenotificacoes.R;
-import br.ufg.inf.mobile.appgerenciadordenotificacoes.model.Notificacao;
 import br.ufg.inf.mobile.appgerenciadordenotificacoes.persistencia.DBAdapter;
 import br.ufg.inf.mobile.appgerenciadordenotificacoes.service.AGNServiceConnection;
 import android.app.Activity;
@@ -22,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class ViewPrincipal extends Activity {
     
 	Button btnSalvar, btnCancelar, btnNovoCadastro, btnRegistrar, btnHistorico, btnVoltar;

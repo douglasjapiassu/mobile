@@ -1,7 +1,6 @@
 package br.ufg.inf.mobile.appgerenciadordenotificacoes.views;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -17,7 +16,6 @@ public class ViewNotificacao extends Activity {
 		// Definimos uma TextView para mostrar a mensagem na tela
 		TextView texto = new TextView(getApplicationContext());
 		// Define como texto da TextView a mensagem recebida do GCM
-		Intent intent = getIntent();
 		texto.setText(getIntent().getStringExtra("mensagem_recebida"));
 		// Ajusta tamanho e cor da fonte
 		texto.setTextSize(20.0F);

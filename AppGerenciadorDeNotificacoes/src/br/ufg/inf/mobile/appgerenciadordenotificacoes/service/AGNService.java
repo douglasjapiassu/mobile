@@ -12,7 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
-
+@SuppressWarnings("deprecation")
 public class AGNService extends Service {
 	
 	private IBinder binder = new NotificacaoBinder(this);
