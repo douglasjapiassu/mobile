@@ -39,8 +39,7 @@ public class AGNService extends Service {
 		// Intent que será disparada quando o usuário clicar sobre a Notificação
 		Intent intent = new Intent(context, ViewNotificacao.class);
 		intent.putExtra("mensagem_recebida", mensagem);
-		//PendingIntent.FLAG_UPDATE_CURRENT
-		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		notification.setLatestEventInfo(context, titulo, mensagem, pendingIntent);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;

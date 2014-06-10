@@ -24,27 +24,29 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
+        public static final int navigation_drawer_width=0x7f040002;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080000;
-        public static final int TableRow1=0x7f08000b;
-        public static final int action_settings=0x7f08000f;
-        public static final int btnCancelar=0x7f08000a;
-        public static final int btnHistorico=0x7f080002;
-        public static final int btnNovo=0x7f080001;
-        public static final int btnSalvar=0x7f080009;
-        public static final int btnVoltar=0x7f08000e;
-        public static final int lblEndereco=0x7f080005;
-        public static final int lblNome=0x7f080003;
-        public static final int lblTelefone=0x7f080004;
-        public static final int listaNotificacoes=0x7f08000d;
-        public static final int textView1=0x7f08000c;
-        public static final int txtEndereco=0x7f080008;
-        public static final int txtNome=0x7f080006;
-        public static final int txtTelefone=0x7f080007;
+        public static final int TableRow1=0x7f08000c;
+        public static final int action_settings=0x7f080010;
+        public static final int btnCancelar=0x7f08000b;
+        public static final int btnHistorico=0x7f080003;
+        public static final int btnNovo=0x7f080002;
+        public static final int btnSalvar=0x7f08000a;
+        public static final int btnVoltar=0x7f08000f;
+        public static final int lblEndereco=0x7f080006;
+        public static final int lblNome=0x7f080004;
+        public static final int lblTelefone=0x7f080005;
+        public static final int listaNotificacoes=0x7f08000e;
+        public static final int teste=0x7f080001;
+        public static final int textView1=0x7f08000d;
+        public static final int txtEndereco=0x7f080009;
+        public static final int txtNome=0x7f080007;
+        public static final int txtTelefone=0x7f080008;
     }
     public static final class layout {
         public static final int activity_view_principal=0x7f030000;

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.ufg.inf.mobile.appgerenciadordenotificacoes"
-    android:versionCode="1" 
+    android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="19"/>
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -31,7 +31,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal" />
         </activity>
-        
         <activity
             android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewNotificacao"
             android:parentActivityName="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal" >
@@ -39,13 +38,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal" />
         </activity>
-        
+
         <receiver android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.broadcastreceiver.AGNBroadcastReceiver" >
             <intent-filter>
                 <action android:name="MEU_BROADCAST_RECEIVER" />
             </intent-filter>
         </receiver>
-        
+
         <service android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.service.AGNService" >
             <intent-filter>
                 <action android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.action.ENVIAR_NOTIFICACAO" />

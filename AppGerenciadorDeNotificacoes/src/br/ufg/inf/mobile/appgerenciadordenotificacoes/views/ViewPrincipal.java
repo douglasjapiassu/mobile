@@ -23,7 +23,7 @@ import android.widget.TextView;
 @SuppressWarnings("deprecation")
 public class ViewPrincipal extends Activity {
     
-	Button btnSalvar, btnCancelar, btnNovoCadastro, btnRegistrar, btnHistorico, btnVoltar;
+	Button btnSalvar, btnCancelar, btnNovoCadastro, btnRegistrar, btnHistorico, btnVoltar, btnTeste;
 	EditText txtNome, txtEndereco, txtTelefone;
 	TextView tvNotificacoes;
 	DBAdapter dbAdapter;
@@ -58,8 +58,7 @@ public class ViewPrincipal extends Activity {
 		// Intent que será disparada quando o usuário clicar sobre a Notificação
 		Intent intent = new Intent(this, ViewNotificacao.class);
 		intent.putExtra("mensagem_recebida", mensagem);
-		//PendingIntent.FLAG_UPDATE_CURRENT
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
 		notification.setLatestEventInfo(this, titulo, mensagem, pendingIntent);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
@@ -67,7 +66,6 @@ public class ViewPrincipal extends Activity {
 		notification.vibrate = new long[] { 100, 250, 100, 500 };
 
 		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		
 		notificationManager.notify(id, notification);
 	}
     
@@ -88,9 +86,16 @@ public class ViewPrincipal extends Activity {
         btnNovoCadastro.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
 				//loadViewCadastro();
-				//connection.getAGNService().mostraNotificacao("Teste", "as aa", context);
-				mostraNotificacao("Teste", "Msg", v);
+				connection.getAGNService().mostraNotificacao("Teste", "as aa", context);
+				//mostraNotificacao("Teste", "Msg", v);
 			}});
+        
+        btnTeste = (Button) findViewById(R.id.teste);
+        btnTeste.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v) {
+        		Intent intent = new Intent(context, ViewNotificacao.class);
+				startActivity(intent);
+        	}});
     }
     
     public void loadViewCadastro() {

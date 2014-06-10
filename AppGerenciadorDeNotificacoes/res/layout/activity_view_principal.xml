@@ -11,6 +11,13 @@
     tools:context=".ViewPrincipal" >
 
     <Button
+        android:id="@+id/teste"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="teste" />
+
+    <Button
         android:id="@+id/btnNovo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
