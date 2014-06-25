@@ -1,8 +1,13 @@
 package br.ufg.inf.es.mobile.util;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.ufg.inf.es.mobile.model.Configuracao;
+import br.ufg.inf.es.mobile.model.Disciplina;
 import br.ufg.inf.es.mobile.model.Usuario;
+import br.ufg.inf.es.mobile.persistencia.ConfiguracaoDAO;
 import br.ufg.inf.es.mobile.persistencia.DatabaseHelper;
 import br.ufg.inf.es.mobile.persistencia.UsuarioDAO;
 import android.content.Context;
@@ -19,6 +24,7 @@ public class AGNCommon {
 	private SharedPreferences.Editor editor;
 	private DatabaseHelper helper;
 	private UsuarioDAO usuarioDAO;
+	private ConfiguracaoDAO configuracaoDAO;
 	
 	public AGNCommon(Context context) {
 		this.context = context;
@@ -71,6 +77,24 @@ public class AGNCommon {
 		}
 		
 		return usuario;
+	}
+	
+	public List<Disciplina> getDisciplinasDoUsuario() {
+		List<Disciplina> listaDisciplinasDoUsuario = new ArrayList<Disciplina>();
+		
+		try {
+			configuracaoDAO = new ConfiguracaoDAO(helper.getConnectionSource());
+			
+			Configuracao configuracao = configuracaoDAO.queryForId(getUsuarioLogado().getConfiguracao().getId());
+			configuracaoDAO.refresh(configuracao);
+			
+			listaDisciplinasDoUsuario = new ArrayList<Disciplina>(configuracao.getDisciplinas());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listaDisciplinasDoUsuario;
 	}
 	
 	public void removerUsuarioDaSessao() {

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 
 import android.app.ListActivity;
@@ -51,9 +52,12 @@ public class ListaNotificacoesActivity extends ListActivity  {
     	
     	try {
 			notificacaoDAO = new NotificacaoDAO(helper.getConnectionSource());
-			//Where<Notificacao, Integer> where = notificacaoDAO.queryBuilder().where();
-			//listaNotificacoes = notificacaoDAO.queryBuilder().orderBy(colunaOrderBy, isCrescente).where().and(where.eq("matricula", matricula), where.eq("matricula", matricula)).query();
-			listaNotificacoes = notificacaoDAO.queryBuilder().orderBy(colunaOrderBy, isCrescente).where().eq("matricula", matricula).query();
+			
+			QueryBuilder<Notificacao, Integer> queryBuilder = notificacaoDAO.queryBuilder().orderBy(colunaOrderBy, isCrescente);
+			Where<Notificacao, Integer> where = queryBuilder.where();
+			where.and(where.in("id_disciplina", common.getDisciplinasDoUsuario()), where.eq("matricula", matricula));
+			
+			listaNotificacoes = where.query();
 			
 			adapter = new NotificacaoAdapter(getApplicationContext(), listaNotificacoes);
 	        
@@ -63,8 +67,8 @@ public class ListaNotificacoesActivity extends ListActivity  {
 		}
     	
     }
-    
-    @Override
+
+	@Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
     	super.onListItemClick(l, v, position, id);
     	

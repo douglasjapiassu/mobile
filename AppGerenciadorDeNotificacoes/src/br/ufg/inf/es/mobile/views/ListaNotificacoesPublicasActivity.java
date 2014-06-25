@@ -105,29 +105,4 @@ public class ListaNotificacoesPublicasActivity extends ListActivity  {
     	
     	adapter.notifyDataSetChanged();
 	}
-    
-    @Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menu = common.menuNotificacoes(menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		String tipo = item.getTitle().toString();
-		String colunaOrderBy = "id";
-		Boolean isCrescente = tipo.contains("Decrescente") == false;
-		
-		if (tipo.contains("Data")) {
-			colunaOrderBy = "data_recebimento";
-		} else {
-			colunaOrderBy = "tipo_remetente";
-		}
-		
-		setarAdapterOrdenadoPor(colunaOrderBy, isCrescente);
-		
-		return super.onOptionsItemSelected(item);
-	}
-
 }
