@@ -116,11 +116,11 @@ public class ListaNotificacoesPublicasActivity extends ListActivity  {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		String[] tipo = item.getTitle().toString().split(" ");
+		String tipo = item.getTitle().toString();
 		String colunaOrderBy = "id";
-		Boolean isCrescente = "Decrescente".equals(tipo[3]) == false;
+		Boolean isCrescente = tipo.contains("Decrescente") == false;
 		
-		if ("Data".equals(tipo[2])) {
+		if (tipo.contains("Data")) {
 			colunaOrderBy = "data_recebimento";
 		} else {
 			colunaOrderBy = "tipo_remetente";
