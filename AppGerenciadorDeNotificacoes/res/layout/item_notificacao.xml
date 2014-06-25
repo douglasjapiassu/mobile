@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical" >
+    
+    <ImageView
+        android:id="@+id/icMsgLida"
+        android:layout_width="33dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/tvTipoNotificacao"
+        android:contentDescription="@null"/>
+
+    <TextView
+        android:id="@+id/tvCabecalho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/tvTipoNotificacao"
+        android:text="@string/cabecalho"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/tvRemetente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCabecalho"
+        android:layout_margin="5dp"
+        android:text="@string/remetente"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+    
+    <TextView
+        android:id="@+id/tvTipoNotificacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/tipoNotificacao"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/tvDataRecebimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvRemetente"
+        android:layout_alignBottom="@+id/tvRemetente"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:text="@string/data"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
+
+</RelativeLayout>

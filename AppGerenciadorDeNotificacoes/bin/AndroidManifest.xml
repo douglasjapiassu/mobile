@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.ufg.inf.mobile.appgerenciadordenotificacoes"
+    package="br.ufg.inf.es.mobile"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -12,11 +12,24 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_agn"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
+        <receiver android:name="br.ufg.inf.es.mobile.broadcastreceiver.AGNBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="MEU_BROADCAST_RECEIVER" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="br.ufg.inf.es.mobile.service.AGNService" >
+            <intent-filter>
+                <action android:name="br.ufg.inf.es.mobile.action.ENVIAR_NOTIFICACAO" />
+            </intent-filter>
+        </service>
+        
         <activity
-            android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal"
+            android:name="br.ufg.inf.es.mobile.views.ViewPrincipal"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,31 +38,72 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewHistoricoNotificacoes"
-            android:parentActivityName="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal" >
+            android:name="br.ufg.inf.es.mobile.views.ViewNotificacao"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.ViewPrincipal" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal" />
+                android:value="br.ufg.inf.es.mobile.views.ViewPrincipal" />
         </activity>
         <activity
-            android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewNotificacao"
-            android:parentActivityName="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal" >
+            android:name="br.ufg.inf.es.mobile.views.ListaNotificacoesPublicasActivity"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.ViewPrincipal" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.ufg.inf.mobile.appgerenciadordenotificacoes.views.ViewPrincipal" />
+                android:value="br.ufg.inf.es.mobile.views.ViewPrincipal" />
+        </activity>
+        <activity
+            android:name="br.ufg.inf.es.mobile.views.NotificacaoPublicaActivity"
+            android:label="@string/notificacoesPublicas"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.ListaNotificacoesPublicasActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.ufg.inf.es.mobile.views.ListaNotificacoesPublicasActivity" />
         </activity>
 
-        <receiver android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.broadcastreceiver.AGNBroadcastReceiver" >
-            <intent-filter>
-                <action android:name="MEU_BROADCAST_RECEIVER" />
-            </intent-filter>
-        </receiver>
-
-        <service android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.service.AGNService" >
-            <intent-filter>
-                <action android:name="br.ufg.inf.mobile.appgerenciadordenotificacoes.action.ENVIAR_NOTIFICACAO" />
-            </intent-filter>
-        </service>
+        <activity
+            android:name="br.ufg.inf.es.mobile.views.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.ViewPrincipal"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.ufg.inf.es.mobile.views.ViewPrincipal" />
+        </activity>
+        <activity
+            android:name="br.ufg.inf.es.mobile.views.UsuarioActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name="br.ufg.inf.es.mobile.views.ConfigActivity"
+            android:label="@string/configuracoes"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.UsuarioActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.ufg.inf.es.mobile.views.UsuarioActivity" />
+        </activity>
+        <activity
+            android:name="br.ufg.inf.es.mobile.views.ListaDisciplinasActivity"
+            android:label="@string/configuracoes"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.ConfigActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.ufg.inf.es.mobile.views.ConfigActivity" />
+        </activity>
+        <activity
+            android:name="br.ufg.inf.es.mobile.views.ListaNotificacoesActivity"
+            android:label="@string/notificacoes"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.UsuarioActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.ufg.inf.es.mobile.views.UsuarioActivity" />
+        </activity>
+        <activity
+            android:name="br.ufg.inf.es.mobile.views.NotificacaoActivity"
+            android:label="@string/notificacao"
+            android:parentActivityName="br.ufg.inf.es.mobile.views.ListaNotificacoesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.ufg.inf.es.mobile.views.ListaNotificacoesActivity" />
+        </activity>
     </application>
 
 </manifest>

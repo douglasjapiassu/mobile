@@ -2,15 +2,26 @@
 <resources>
 
     <string name="app_name">AGN</string>
+    <string name="disciplina">Disciplina</string>
     <string name="action_settings">Opções</string>
-    <string name="lblNome">Nome:</string>
-    <string name="lblTelefone">Fone:</string>
-    <string name="lblEndereco">Endereço:</string>
-    <string name="lblContatos">Contatos:</string>
     <string name="btnSalvar">Salvar</string>
     <string name="btnCancelar">Cancelar</string>
     <string name="btnVoltar">Voltar</string>
     <string name="novo_cadastro">Novo Cadastro</string>
     <string name="historico">Histórico</string>
+    <string name="login">Login</string>
+    <string name="notificacoesPublicas">Notificações Públicas</string>
+    <string name="data">Data</string>
+    <string name="remetente">Remetente</string>
+    <string name="cabecalho">Cabeçalho</string>
+    <string name="tipoNotificacao">Tipo de Notificação</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="notificacoes">Notificações</string>
+    <string name="notificacao">Notificação</string>
+    <string name="mensagem">Mensagem</string>
+    <string name="bemVindo">Bem vindo, ?</string>
+    <string name="logout">Logout</string>
+    <string name="ativarDisciplinas">Ativar Disciplinas</string>
+    <string name="ativarRemetentes">Ativar Remetentes</string>
 
 </resources>
