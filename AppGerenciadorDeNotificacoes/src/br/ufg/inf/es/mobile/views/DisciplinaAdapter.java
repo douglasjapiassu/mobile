@@ -20,9 +20,11 @@ public class DisciplinaAdapter extends BaseAdapter {
 	ImageView imgAtivo;
 	private LayoutInflater layoutInflater;
     private List<Disciplina> listaDisciplinas;
+    private List<Disciplina> listaDisciplinasConfiguracao;
     
-    public DisciplinaAdapter(Context context, List<Disciplina> listaDisciplinas) {
+    public DisciplinaAdapter(Context context, List<Disciplina> listaDisciplinas, List<Disciplina> listaDisciplinasConfiguracao) {
         this.listaDisciplinas = listaDisciplinas;
+        this.listaDisciplinasConfiguracao = listaDisciplinasConfiguracao;
         layoutInflater = LayoutInflater.from(context);
     }
     
@@ -55,12 +57,13 @@ public class DisciplinaAdapter extends BaseAdapter {
 	
 	public void popularView(Disciplina disciplina) {
 		tvDisciplina.setText(disciplina.getNome());
+		boolean isDisciplinaAtiva = isDisciplinaAtiva(disciplina);
 		
 		int typeFace = Typeface.NORMAL;
 		
 		imgAtivo.setImageResource(R.drawable.ic_not_check);
 		
-		if (disciplina.getIsDisciplinaAtiva()) {
+		if (isDisciplinaAtiva) {
 			typeFace = Typeface.BOLD_ITALIC;
 			tvDisciplina.setTextColor(Color.BLACK);
 			imgAtivo.setImageResource(R.drawable.ic_check);
@@ -68,6 +71,15 @@ public class DisciplinaAdapter extends BaseAdapter {
 		
 		tvDisciplina.setTypeface(null, typeFace);
 		tvDisciplina.setTextColor(Color.BLACK);
+	}
+
+	private Boolean isDisciplinaAtiva(Disciplina disciplina) {
+		for(Disciplina disciplinaConfiguracao : listaDisciplinasConfiguracao) {
+			if (disciplina.getId() == disciplinaConfiguracao.getId())
+				return true;
+		}
+		
+		return false;
 	}
 
 }

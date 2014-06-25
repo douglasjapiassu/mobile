@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.j256.ormlite.table.TableUtils;
 
+import br.ufg.inf.es.mobile.model.Configuracao;
 import br.ufg.inf.es.mobile.model.Disciplina;
 import br.ufg.inf.es.mobile.model.Notificacao;
 import br.ufg.inf.es.mobile.model.Usuario;
@@ -18,28 +19,63 @@ public class AGNBuilder  {
 
 	private static DatabaseHelper helper;
 	private static DisciplinaDAO disciplinaDAO;
+	private static ConfiguracaoDAO configuracaoDAO;
 	private static UsuarioDAO usuarioDAO;
 	private static NotificacaoDAO notificacaoDAO;
+	private List<Disciplina> listaDisciplinas;
 	Disciplina web, mobile, integracao, persistencia, concorrencia;
+	Configuracao configuracao;
 
 	public AGNBuilder(Context context) {
 		helper = new DatabaseHelper(context);
 	}
 	
 	public void construct() {
+		if (!configuracoes()) Log.e("ERROS", "Erro ao criar Configuração");
 		if (!disciplinas()) Log.e("ERROS", "Erro ao criar Disciplinas");
 		if (!usuarios()) Log.e("ERROS", "Erro ao criar Usuários");
 		if (!notificacoes()) Log.e("ERROS", "Erro ao criar Notificações");
+		
+		listarConfiguracoes();
 	}
 	
-	private Boolean disciplinas() {
-		List<Disciplina> listaDisciplinas = new ArrayList<Disciplina>();
+	private void listarConfiguracoes() {
+		List<Configuracao> listaConfiguracao = new ArrayList<Configuracao>();
 		
-		web = new Disciplina("Desenvolvimento Web", "Fábio Nogueira Lucena", true);
-		mobile = new Disciplina("Desenvolvimento Mobile", "Fábio Nogueira Lucena", false);
-		integracao = new Disciplina("Integração de Aplicações", "Fábio Nogueira Lucena", true);
-		persistencia = new Disciplina("Persistência", "Marcelo Quinta", true);
-		concorrencia = new Disciplina("Concorrência", "Marcelo Quinta", true);
+		try {
+			listaConfiguracao = configuracaoDAO.queryForAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		Log.i("INFO", listaConfiguracao.toString());
+	}
+
+	private boolean configuracoes() {
+		configuracao = new Configuracao();
+		
+		try {
+			TableUtils.clearTable(helper.getConnectionSource(), Configuracao.class);
+			configuracaoDAO = new ConfiguracaoDAO(helper.getConnectionSource());
+			
+			configuracaoDAO.create(configuracao);
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+
+	private Boolean disciplinas() {
+		listaDisciplinas = new ArrayList<Disciplina>();
+		
+		web = new Disciplina("Desenvolvimento Web", "Fábio Nogueira Lucena", true, configuracao);
+		mobile = new Disciplina("Desenvolvimento Mobile", "Fábio Nogueira Lucena", false, configuracao);
+		integracao = new Disciplina("Integração de Aplicações", "Fábio Nogueira Lucena", true, configuracao);
+		persistencia = new Disciplina("Persistência", "Marcelo Quinta", true, configuracao);
+		concorrencia = new Disciplina("Concorrência", "Marcelo Quinta", true, configuracao);
 		
 		try {
 			TableUtils.clearTable(helper.getConnectionSource(), Disciplina.class);
@@ -65,8 +101,8 @@ public class AGNBuilder  {
 	private Boolean usuarios() {
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 		
-		Usuario admin = new Usuario("admin", "admin", "Administrador");
-		Usuario douglas = new Usuario("090187", "12345", "Douglas");
+		Usuario admin = new Usuario("admin", "admin", "Administrador", configuracao);
+		Usuario douglas = new Usuario("090187", "12345", "Douglas", configuracao);
 		
 		try {
 			TableUtils.clearTable(helper.getConnectionSource(), Usuario.class);

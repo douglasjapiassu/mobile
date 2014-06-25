@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.j256.ormlite.stmt.Where;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import br.ufg.inf.es.mobile.persistencia.DatabaseHelper;
 import br.ufg.inf.es.mobile.persistencia.NotificacaoDAO;
 import br.ufg.inf.es.mobile.util.AGNCommon;
 
+@SuppressWarnings("unchecked")
 public class ListaNotificacoesActivity extends ListActivity  {
     
 	DatabaseHelper helper;
@@ -43,11 +46,13 @@ public class ListaNotificacoesActivity extends ListActivity  {
         setarAdapterOrdenadoPor("id", true);
     }
     
-    public void setarAdapterOrdenadoPor(String colunaOrderBy, Boolean isCrescente) {
+	public void setarAdapterOrdenadoPor(String colunaOrderBy, Boolean isCrescente) {
     	listaNotificacoes = new ArrayList<Notificacao>();
     	
     	try {
 			notificacaoDAO = new NotificacaoDAO(helper.getConnectionSource());
+			//Where<Notificacao, Integer> where = notificacaoDAO.queryBuilder().where();
+			//listaNotificacoes = notificacaoDAO.queryBuilder().orderBy(colunaOrderBy, isCrescente).where().and(where.eq("matricula", matricula), where.eq("matricula", matricula)).query();
 			listaNotificacoes = notificacaoDAO.queryBuilder().orderBy(colunaOrderBy, isCrescente).where().eq("matricula", matricula).query();
 			
 			adapter = new NotificacaoAdapter(getApplicationContext(), listaNotificacoes);
@@ -119,11 +124,11 @@ public class ListaNotificacoesActivity extends ListActivity  {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		String[] tipo = item.getTitle().toString().split(" ");
+		String tipo = item.getTitle().toString();
 		String colunaOrderBy = "id";
-		Boolean isCrescente = "Decrescente".equals(tipo[3]) == false;
+		Boolean isCrescente = tipo.contains("Decrescente") == false;
 		
-		if ("Data".equals(tipo[2])) {
+		if (tipo.contains("Data")) {
 			colunaOrderBy = "data_recebimento";
 		} else {
 			colunaOrderBy = "tipo_remetente";

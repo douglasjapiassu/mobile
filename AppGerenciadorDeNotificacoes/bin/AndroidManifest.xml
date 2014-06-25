@@ -73,20 +73,12 @@
             android:name="br.ufg.inf.es.mobile.views.UsuarioActivity"
             android:label="@string/app_name" />
         <activity
-            android:name="br.ufg.inf.es.mobile.views.ConfigActivity"
+            android:name="br.ufg.inf.es.mobile.views.ListaDisciplinasActivity"
             android:label="@string/configuracoes"
             android:parentActivityName="br.ufg.inf.es.mobile.views.UsuarioActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.ufg.inf.es.mobile.views.UsuarioActivity" />
-        </activity>
-        <activity
-            android:name="br.ufg.inf.es.mobile.views.ListaDisciplinasActivity"
-            android:label="@string/configuracoes"
-            android:parentActivityName="br.ufg.inf.es.mobile.views.ConfigActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.ufg.inf.es.mobile.views.ConfigActivity" />
         </activity>
         <activity
             android:name="br.ufg.inf.es.mobile.views.ListaNotificacoesActivity"

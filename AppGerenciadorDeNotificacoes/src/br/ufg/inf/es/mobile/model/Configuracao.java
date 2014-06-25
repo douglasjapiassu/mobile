@@ -15,8 +15,8 @@ public class Configuracao extends GenericModel {
 		
 	}
 	
-	public Configuracao(String nome, String docente, Boolean isDisciplinaAtiva) {
-
+	public Configuracao(Collection<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 	
 	

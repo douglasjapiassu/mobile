@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.TextView;
 import br.ufg.inf.es.mobile.R;
 import br.ufg.inf.es.mobile.model.Notificacao;
@@ -25,14 +22,6 @@ public class NotificacaoActivity extends Activity {
 	private TextView tvTipoNotificacao, tvCabecalho, tvMensagem, tvRemetente, tvDataRecebimento;
 	AGNCommon common;
     
-	/*@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-		common = new AGNCommon(getApplicationContext()); 
-		menu = common.optionsNotificacao(menu);
-		
-		super.onCreateContextMenu(menu, v, menuInfo);
-	}*/
-	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

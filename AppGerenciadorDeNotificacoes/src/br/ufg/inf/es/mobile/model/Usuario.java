@@ -15,15 +15,19 @@ public class Usuario extends GenericModel {
 	@DatabaseField
 	private String nome;
 	
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "id_configuracao")
+	private Configuracao configuracao;
+	
 	public Usuario() {
 		
 	}
 	
-	public Usuario(String matricula, String senha, String nome) {
+	public Usuario(String matricula, String senha, String nome, Configuracao configuracao) {
 		super();
 		this.matricula = matricula;
 		this.senha = senha;
 		this.nome = nome;
+		this.configuracao = configuracao;
 	}
 
 
@@ -57,6 +61,14 @@ public class Usuario extends GenericModel {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Configuracao getConfiguracao() {
+		return configuracao;
+	}
+
+	public void setConfiguracao(Configuracao configuracao) {
+		this.configuracao = configuracao;
 	}
 	
 }

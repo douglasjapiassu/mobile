@@ -8,7 +8,9 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import br.ufg.inf.es.mobile.model.Configuracao;
 import br.ufg.inf.es.mobile.model.Disciplina;
+import br.ufg.inf.es.mobile.model.Usuario;
 import br.ufg.inf.es.mobile.persistencia.ConfiguracaoDAO;
 import br.ufg.inf.es.mobile.persistencia.DatabaseHelper;
 import br.ufg.inf.es.mobile.persistencia.DisciplinaDAO;
@@ -20,8 +22,11 @@ public class ListaDisciplinasActivity extends ListActivity  {
 	DisciplinaDAO disciplinaDAO;
 	ConfiguracaoDAO configuracaoDAO;
 	DisciplinaAdapter adapter;
+	Configuracao configuracao;
+	Usuario usuario;
 	AGNCommon common;
 	List<Disciplina> listaDisciplinas;
+	List<Disciplina> listaDisciplinasConfiguracao;
 	String matricula;
 	
     @Override
@@ -32,7 +37,8 @@ public class ListaDisciplinasActivity extends ListActivity  {
         
         helper = new DatabaseHelper(getApplicationContext());
         listaDisciplinas = new ArrayList<Disciplina>();
-        matricula = common.getUsuarioLogado().getMatricula();
+        usuario = common.getUsuarioLogado();
+        matricula = usuario.getMatricula();
         
         setarAdapterOrdenadoPor("id", true);
     }
@@ -41,10 +47,14 @@ public class ListaDisciplinasActivity extends ListActivity  {
     	listaDisciplinas = new ArrayList<Disciplina>();
     	
     	try {
+    		configuracaoDAO = new ConfiguracaoDAO(helper.getConnectionSource());
 			disciplinaDAO = new DisciplinaDAO(helper.getConnectionSource());
+			configuracao = configuracaoDAO.queryForId(usuario.getConfiguracao().getId());
+			configuracaoDAO.refresh(configuracao);
+			listaDisciplinasConfiguracao = new ArrayList<Disciplina>(configuracao.getDisciplinas());
 			listaDisciplinas = disciplinaDAO.queryBuilder().orderBy(colunaOrderBy, isCrescente).query();
 			
-			adapter = new DisciplinaAdapter(getApplicationContext(), listaDisciplinas);
+			adapter = new DisciplinaAdapter(getApplicationContext(), listaDisciplinas, listaDisciplinasConfiguracao);
 	        
 	        setListAdapter(adapter);
 		} catch (SQLException e) {
@@ -60,9 +70,12 @@ public class ListaDisciplinasActivity extends ListActivity  {
     }
     private void setDisciplinaAtiva(int position) {
     	Disciplina disciplina = adapter.getItem(position);
-    	Boolean isDisciplinaAtiva = !disciplina.getIsDisciplinaAtiva();
     	
-    	disciplina.setIsDisciplinaAtiva(isDisciplinaAtiva);
+    	if(disciplina.getConfiguracao() == null) {
+    		disciplina.setConfiguracao(configuracao);
+    	} else {
+    		disciplina.setConfiguracao(new Configuracao());
+    	}
     	
     	try {
     		disciplinaDAO.update(disciplina);
@@ -70,6 +83,6 @@ public class ListaDisciplinasActivity extends ListActivity  {
     		e.printStackTrace();
     	}
     	
-    	adapter.notifyDataSetChanged();
+    	setarAdapterOrdenadoPor("id", true);
     }
 }

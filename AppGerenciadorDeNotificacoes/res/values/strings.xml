@@ -22,6 +22,5 @@
     <string name="bemVindo">Bem vindo, ?</string>
     <string name="logout">Logout</string>
     <string name="ativarDisciplinas">Ativar Disciplinas</string>
-    <string name="ativarRemetentes">Ativar Remetentes</string>
 
 </resources>

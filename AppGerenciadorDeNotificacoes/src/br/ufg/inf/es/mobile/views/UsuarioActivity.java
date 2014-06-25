@@ -14,7 +14,7 @@ import br.ufg.inf.es.mobile.util.AGNCommon;
 
 public class UsuarioActivity extends Activity {
     
-	Button btnConfiguracoes, btnNotificacoes, btnSair;
+	Button btnAtivarDisciplinas, btnNotificacoes, btnSair;
 	TextView tvBemVindo;
 	private AGNCommon common;
 	
@@ -35,10 +35,10 @@ public class UsuarioActivity extends Activity {
         	tvBemVindo.setText("Bem vindo, " + common.getUsuarioLogado().getNome());
         }
         
-    	btnConfiguracoes = (Button) findViewById(R.id.btnConfig);
-    	btnConfiguracoes.setOnClickListener(new OnClickListener(){
+    	btnAtivarDisciplinas = (Button) findViewById(R.id.btnAtivarDisciplinas);
+    	btnAtivarDisciplinas.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
-				Intent intent = new Intent(context, ConfigActivity.class);
+				Intent intent = new Intent(context, ListaDisciplinasActivity.class);
 				startActivity(intent);
 			}});
         
@@ -54,7 +54,10 @@ public class UsuarioActivity extends Activity {
         btnSair.setOnClickListener(new OnClickListener(){
         	public void onClick(View v) {
         		common.removerUsuarioDaSessao();
-        		finish();
+        		Intent intent = new Intent(context, LoginActivity.class);
+        		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        		startActivity(intent);
         	}});
     }
     

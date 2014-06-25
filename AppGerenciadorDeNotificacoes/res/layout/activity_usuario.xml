@@ -22,31 +22,29 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
-        android:id="@+id/btnConfig"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnAtivarDisciplinas"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/tvBemVindo"
+        android:layout_alignRight="@+id/btnSair"
         android:layout_below="@+id/tvBemVindo"
         android:layout_marginTop="24dp"
-        android:text="@string/configuracoes"
+        android:text="@string/ativarDisciplinas"
         android:textColor="@color/branco"
         android:textStyle="bold|italic" />
 
     <Button
         android:id="@+id/btnNotificacoes"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnConfig"
-        android:layout_below="@+id/btnConfig"
+        android:layout_alignLeft="@+id/btnAtivarDisciplinas"
+        android:layout_below="@+id/btnAtivarDisciplinas"
         android:text="@string/notificacoes"
         android:textColor="@color/branco"
         android:textStyle="bold|italic" />
 
     <Button
         android:id="@+id/btnSair"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

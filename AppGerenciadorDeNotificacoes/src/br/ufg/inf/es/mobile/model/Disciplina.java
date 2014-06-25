@@ -15,17 +15,18 @@ public class Disciplina extends GenericModel {
 	@DatabaseField
 	private Boolean isDisciplinaAtiva;
 	
-	@DatabaseField(columnName = "id_configuracao", foreign = true)
+	@DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true, columnName = "id_configuracao") 
 	private Configuracao configuracao;
 	
 	public Disciplina() {
 		
 	}
 	
-	public Disciplina(String nome, String docente, Boolean isDisciplinaAtiva) {
+	public Disciplina(String nome, String docente, Boolean isDisciplinaAtiva, Configuracao configuracao) {
 		this.nome = nome;
 		this.docente = docente;
 		this.isDisciplinaAtiva = isDisciplinaAtiva;
+		this.setConfiguracao(configuracao);
 	}
 	
 	
@@ -59,5 +60,13 @@ public class Disciplina extends GenericModel {
 
 	public void setIsDisciplinaAtiva(Boolean isDisciplinaAtiva) {
 		this.isDisciplinaAtiva = isDisciplinaAtiva;
+	}
+
+	public Configuracao getConfiguracao() {
+		return configuracao;
+	}
+
+	public void setConfiguracao(Configuracao configuracao) {
+		this.configuracao = configuracao;
 	}
 }

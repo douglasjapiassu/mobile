@@ -10,9 +10,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,28 +23,6 @@ public class ViewPrincipal extends Activity {
 	Button btnLogin, btnNotificacoesPublicas;
 	private Intent intent;
 	private AGNServiceConnection connection;
-	
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	MenuInflater menuInflater = getMenuInflater();
-    	menuInflater.inflate(R.menu.view_principal, menu);
-    	
-    	return super.onCreateOptionsMenu(menu);
-    }
-	
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-    	Intent intent;
-    	
-    	if (item.getItemId() == R.id.action_settings) {
-    		intent = new Intent(getApplicationContext(), ConfigActivity.class);
-    	} else {
-    		intent = new Intent(getApplicationContext(), LoginActivity.class);
-    		
-    	}
-    	startActivity(intent);
-    	return super.onOptionsItemSelected(item);
-    }
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
