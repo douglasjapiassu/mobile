@@ -31,8 +31,8 @@ public class ListaNotificacoesPublicasActivity extends ListActivity  {
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	common = new AGNCommon(getApplicationContext());
         super.onCreate(savedInstanceState);
-        registerForContextMenu(getListView());
         
         helper = new DatabaseHelper(getApplicationContext());
         
@@ -72,7 +72,6 @@ public class ListaNotificacoesPublicasActivity extends ListActivity  {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-    	common = new AGNCommon(getApplicationContext());
     	menu = common.contextMenuNotificacoes(menu);
     	
     	super.onCreateContextMenu(menu, v, menuInfo);
