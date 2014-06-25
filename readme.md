@@ -12,19 +12,14 @@ Um aplicativo plataforma Android onde seja possível gerenciar notificações qu
 
 ***
 
-### Arquitetura
+### Sobre o projeto:
 
-#### Projeto Mobile ([ReceiveNotification][2])
+#### Arquitetura
 
 * Java, como plataforma geral de desenvolvimento
 * Android SDK, como principal API de desenvolvimento.
 * SQLite, como banco de dados.
 * ORMLite, como solução de persistência.
-
-
-***
-
-### Sobre o projeto:
 
 #### Como utilizar
 
